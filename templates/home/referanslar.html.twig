@@ -1,0 +1,31 @@
+{% extends 'home/frontbase.html.twig' %}
+
+{% block title %} Referanslar {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }}{% endblock %}
+
+    {% block body %}
+
+        <section class="feature_add_area">
+
+            <div class="container">
+                <div class="row feature_inner">
+                    <hr class="soften">
+                    <div>
+                        <h1>Başarı Hikayemiz</h1>
+                        <hr class="soften">
+                    </div>
+                    <hr class="soften">
+                    <p>
+                        {{ data[0].aboutus|raw }}
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+{% endblock %}

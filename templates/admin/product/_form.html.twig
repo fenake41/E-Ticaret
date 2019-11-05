@@ -1,0 +1,73 @@
+<form role="form" method="post">
+
+    <div class="form-group">
+
+            <label>Kategorisi</label>
+            <select class="form-control" name="product[category_id]" >
+
+                {% if catname %}
+                <option value="{{ product.categoryid }}"> {{ catname[0].title}} </option>
+                {% endif %}
+
+                {% for cat in catlist %}
+                    <option value="{{ cat.id }}"> {{ cat.title }} </option>
+                {% endfor %}
+
+            </select>
+    </div>
+    <div class="form-group">
+        <label>Adı</label>
+        <input class="form-control" name="product[title]"  value="{{ product.title }}"type="text">
+
+    </div>
+    <div class="form-group">
+        <label>Anahtar Kelimeler</label>
+        <input class="form-control" name="product[keywords]" value="{{ product.keywords }}" type="text">
+
+    </div>
+    <div class="form-group">
+
+        <input class="form-control"  name="product[image]" value="{{ product.image }}" type="hidden">
+
+    </div>
+    <div class="form-group">
+        <label>Alış Fiyatı</label>
+        <input class="form-control" name="product[pprice]" value="{{ product.pprice }}" type="number">
+
+    </div>
+    <div class="form-group">
+        <label>Satış Fiyatı</label>
+        <input class="form-control" name="product[sprice]" value="{{ product.sprice }}" type="number">
+
+        <label>Miktar</label>
+        <input class="form-control" name="product[amount]" value="{{ product.amount }}" type="number">
+
+        <label>Durum</label>
+        <select name="product[status]" class="form-control">
+            <option value="{{ product.status }}">{{ product.status }}</option>
+            <option>True</option>
+            <option>False</option>
+        </select>
+
+        <div class="form-group">
+            <label>Detay</label>
+        </div>
+
+        <div class="form-group">
+        <textarea id="editor" name="product[detail]" rows="7" cols="100">{{ product.detail }}</textarea>
+        </div>
+
+        </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+

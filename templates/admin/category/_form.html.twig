@@ -1,0 +1,49 @@
+<form role="form" method="post">
+
+    <div class="form-group">
+
+        <div class="form-group">
+
+            <label>Üst Kategori</label>
+            <select class="form-control" name="category[parentid]" >
+                <option>{{ category.parentid }}</option>
+                <option value="0">Ana Kategori</option>
+                {% for cat in catlist %}
+                <option value="{{ cat.id }}">{{ cat.title }}</option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label>Ürün Başlığı</label>
+        <input class="form-control" name="category[title]"  value="{{ category.title }}"type="text">
+
+    </div>
+    <div class="form-group">
+        <label>Anahtar Kelimeler</label>
+        <input class="form-control" name="category[keywords]" value="{{ category.keywords }}" type="text">
+
+    </div>
+    <div class="form-group">
+        <label>Ürün Açıklaması</label>
+        <input class="form-control" name="category[description]" value="{{ category.description }}" type="text">
+
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <select class="form-control" name="category[status]">
+           <option> {{ category.status }}</option>
+            <option>False</option>
+            <option>True</option>
+
+        </select>
+
+    </div>
+
+    <button type="submit" class="btn btn-danger">Kaydet</button>
+</form>
+
+

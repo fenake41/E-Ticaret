@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sipariş Detay{% endblock %}
+
+{% block body %}
+    <h1>OrderDetail index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sipariş Id</th>
+                <th>Kullanıcı Id</th>
+                <th>Ürün Id</th>
+                <th>Fiyat</th>
+                <th>Adet</th>
+                <th>Tutar</th>
+                <th>İsim</th>
+                <th>Statü</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order_detail in order_details %}
+            <tr>
+                <td>{{ order_detail.id }}</td>
+                <td>{{ order_detail.orderid }}</td>
+                <td>{{ order_detail.userid }}</td>
+                <td>{{ order_detail.productid }}</td>
+                <td>{{ order_detail.price }}</td>
+                <td>{{ order_detail.quantity }}</td>
+                <td>{{ order_detail.amount }}</td>
+                <td>{{ order_detail.name }}</td>
+                <td>{{ order_detail.status }}</td>
+                <td>
+                    <a href="{{ path('order_detail_show', {'id': order_detail.id}) }}">show</a>
+                    <a href="{{ path('order_detail_edit', {'id': order_detail.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('order_detail_new') }}">Create new</a>
+{% endblock %}

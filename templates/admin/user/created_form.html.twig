@@ -1,0 +1,66 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Üye Ekleme {% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+
+            <div class="col-md-12">
+                <h1 class="page-head-line">ÜYE EKLEME</h1>
+    <div class="panel panel-default">
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Üye Kayıt
+            </div>
+            <div class="panel-body">
+                <form role="form" method="post">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control"name="users[name]" type="text">
+                        <p class="help-block">Help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" name="users[email]" type="text">
+                        <p class="help-block">Help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="form-control" name="users[password]" type="password">
+                        <p class="help-block">Help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="form-control" name="users[type]" >
+                            <option>Admin</option>
+                            <option>Üye</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="users[status]" >
+                            <option>True</option>
+                            <option>False</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger">Kaydet</button>
+
+
+                </form>
+            </div>
+        </div>
+
+
+
+        </div>
+    </div>
+
+        </div>
+    </div>
+{% endblock %}

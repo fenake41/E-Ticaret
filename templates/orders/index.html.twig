@@ -1,0 +1,76 @@
+{% extends 'home/frontbase.html.twig' %}
+
+{% block title %}Siperişler{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-3">
+        <div class="left-sidebar">
+
+            <aside class="l_widget l_categories_widget">
+                <div class="l_title">
+
+                </div>
+                <ul>
+                    <li><a href="{{ path('userpanel_show') }}"><span class="fa-icon-chevron-right"></span>Bilgilerim</a> </li>
+                    <li><a href="{{ path('userpanel_edit') }}"><span class="fa-icon-chevron-right"></span>Düzenle</a> </li>
+                    <li><a href="{{ path('shopcart_index') }}"><span class="fa-icon-chevron-right"></span>Sepetim</a> </li>
+                    <li><a href=""><span class="fa-icon-chevron-right"></span>Favori Ürünlerim</a> </li>
+                    <li><a href="{{ path('orders_index') }}"><span class="fa-icon-chevron-right"></span>Sipariş Geçmişi</a> </li>
+                    <li><a href=""><span class="fa-icon-chevron-right"></span>Yorumlarım</a> </li>
+                    <li><a href="{{ path('app_logout') }}"><span class="fa-icon-chevron-right"></span>Çıkış</a> </li>
+                </ul>
+            </aside>
+
+        </div>
+    </div>
+    <div class="col-sm-9 padding-right">
+    <h1>Siparişlerim</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sipariş ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Toplam Tutar</th>
+                <th>İsim</th>
+                <th>Adres</th>
+                <th>Şehir</th>
+                <th>Telefon</th>
+                <th>Ek Bilgi</th>
+                <th>Sipariş Durumu</th>
+                <th>Not</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.userid }}</td>
+                <td>{{ order.amount }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.adress }}</td>
+                <td>{{ order.city }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.shipinfo }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.note }}</td>
+                <td>
+                    <a href="{{ path('orders_show', {'id': order.id}) }}" class="btn btn-primary">Göster</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Sipariş Geçmişiniz Yoktur.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

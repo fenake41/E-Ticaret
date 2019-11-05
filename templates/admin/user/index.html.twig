@@ -1,0 +1,56 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Üye Listesi {% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">ÜYE LİSTESİ
+                <small><a href="{{ path('admin_user_new') }}" class="btn btn-lg btn-primary">Üye Ekleme</a></small>
+                </h1>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            Context Classes
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>İsim</th>
+                        <th>Email</th>
+                        <th>Türü</th>
+                        <th>Durum</th>
+                        <th>Düzenle</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    {% for user in users %}
+                    <tbody>
+                    <tr class="success">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.type }}</td>
+                        <td>{{ user.status}}</td>
+                        <td><a href="{{ path('admin_user_edit',{'id':user.id}) }}"  class="btn btn-info">Düzenle</a> </td>
+                        <td><a href="{{ path('admin_user_delete',{'id':user.id}) }}"  onclick="return confirm('Bu veriyi  silmek istediğinize emin misiniz?');" class="btn btn-danger">Sil</a></td>
+
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

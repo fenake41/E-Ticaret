@@ -1,0 +1,89 @@
+{% extends 'home/frontbase.html.twig' %}
+
+
+{% block body %}
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3" >
+                                    <div class="left_sidebar_area">
+                                        <aside class="l_widget l_categories_widget">
+                                            <div class="l_title">
+
+                                            </div>
+                                            <ul>
+                                                <li><a href="{{ path('userpanel_show') }}"><span class="fa-icon-chevron-right"></span>Bilgilerim</a> </li>
+                                                <li><a href="{{ path('userpanel_edit') }}"><span class="fa-icon-chevron-right"></span>Düzenle</a> </li>
+                                                <li><a href="{{ path('shopcart_index') }}"><span class="fa-icon-chevron-right"></span>Sepetim</a> </li>
+                                                <li><a href=""><span class="fa-icon-chevron-right"></span>Favori Ürünlerim</a> </li>
+                                                <li><a href="{{ path('orders_index') }}"><span class="fa-icon-chevron-right"></span>Sipariş Geçmişi</a> </li>
+                                                <li><a href=""><span class="fa-icon-chevron-right"></span>Yorumlarım</a> </li>
+                                                <li><a href="{{ path('app_logout') }}"><span class="fa-icon-chevron-right"></span>Çıkış</a> </li>
+                                            </ul>
+                                        </aside>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="row">
+                        <h1>Profil</h1>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Üye ID</th>
+                                <td>{{ app.user.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ app.user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Üye Tipi</th>
+                                <td>{{ app.user.roles|join }}</td>
+                            </tr>
+                            <tr>
+                                <th>İsim</th>
+                                <td>{{ app.user.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adres</th>
+                                <td>{{ app.user.adress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Şehir</th>
+                                <td>{{ app.user.city }}</td>
+                            </tr>
+                            <tr>
+                                <th>Telefon</th>
+                                <td>{{ app.user.phone }}</td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+
+

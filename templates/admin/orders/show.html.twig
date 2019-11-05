@@ -1,0 +1,113 @@
+{% extends 'admin/adminbase.html.twig' %}
+{% block title %}SİPARİŞ DETAYLARI{% endblock %}
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+    <h1>Sipariş Detayı</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Sipariş ID</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Kullanıcı Id</th>
+                <td>{{ order.userid }}</td>
+            </tr>
+            <tr>
+                <th>Toplam Tutar</th>
+                <td>{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <th>İsim</th>
+                <td>{{ order.name }}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ order.adress }}</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>{{ order.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ order.phone }}</td>
+            </tr>
+            <form action="{{ path('admin_orders_update',{'id':order.id}) }}" method="post">
+            <tr>
+                <th>Ek Bilgi</th>
+                <td>
+                    <textarea name="shipinfo" cols="100" rows="3">
+                        {{ order.shipinfo }}
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Yönetici Notu</th>
+                <td>
+                    <textarea name="note" cols="100" rows="3">
+                        {{ order.note }}
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Durum</th>
+                <td>
+                    <select name="status">
+                        <option> {{ order.status }} </option>
+                        <option> accepted </option>
+                        <option> inshipping </option>
+                        <option> canceled </option>
+                        <option> complated </option>
+                    </select>
+
+                    <input type="submit" value="Guncelle" class="btn btn-primary">
+                </td>
+            </tr>
+            </form>
+
+
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Ürün ID</th>
+            <th>Ürün Adı</th>
+            <th>Satış Fiyatı</th>
+            <th>Adet</th>
+            <th>Toplam Tutar</th>
+            <th>Durum</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for product in orderdetail %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.amount }}</td>
+                <td>{{ product.status }}</td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+            <td colspan="5"> <b>Alışveriş Tutarı: {{ order.amount }}</b></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

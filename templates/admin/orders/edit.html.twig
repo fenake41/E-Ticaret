@@ -1,0 +1,13 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Sipariş Düzenleme{% endblock %}
+
+{% block content %}
+    <h1>Edit Orders</h1>
+
+    {{ include('orders/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('orders_index') }}">Listeye Dön</a>
+
+    {{ include('orders/_delete_form.html.twig') }}
+{% endblock %}

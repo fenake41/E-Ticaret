@@ -1,0 +1,101 @@
+{% extends 'home/frontbase.html.twig' %}
+{% block title %}  Sepet {% endblock %}
+{% block keywords %}  {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+{% block body %}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="col-sm-3">
+            <div class="left-sidebar">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3" >
+                            <div class="left_sidebar_area">
+                                <aside class="l_widget l_categories_widget">
+                                    <div class="l_title">
+
+                                    </div>
+                                    <ul>
+                                        <li><a href="{{ path('userpanel_show') }}"><span class="fa-icon-chevron-right"></span>Bilgilerim</a> </li>
+                                        <li><a href="{{ path('userpanel_edit') }}"><span class="fa-icon-chevron-right"></span>Düzenle</a> </li>
+                                        <li><a href="{{ path('shopcart_index') }}"><span class="fa-icon-chevron-right"></span>Sepetim</a> </li>
+                                        <li><a href=""><span class="fa-icon-chevron-right"></span>Favori Ürünlerim</a> </li>
+                                        <li><a href="{{ path('orders_index') }}"><span class="fa-icon-chevron-right"></span>Sipariş Geçmişi</a> </li>
+                                        <li><a href=""><span class="fa-icon-chevron-right"></span>Yorumlarım</a> </li>
+                                        <li><a href="{{ path('app_logout') }}"><span class="fa-icon-chevron-right"></span>Çıkış</a> </li>
+                                    </ul>
+                                </aside>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('home') }}">Anasayfa</a></li>
+                <li class="active">Alışveriş Sepeti</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            {{   include ('home/messages.html.twig') }}
+            <table class="table table-condensed">
+                <thead>
+                <tr class="cart_menu">
+                    <td class="image">Id</td>
+                    <td class="description">Ürün Adı</td>
+                    <td class="price">Fiyat</td>
+                    <td class="quantity">Miktar</td>
+                    <td class="quantity">Toplam Tutar</td>
+                    <td class="total">Sepetten Çıkart</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                {% set total=0 %}
+                {% for shopcart in shopcarts %}
+                <tr>
+                    <td class="cart_product">
+                        {{ shopcart.id }}
+                    </td>
+                    <td class="cart_description">
+                        {{ shopcart.title }}
+                    </td>
+                    <td class="cart_price">
+                        {{ shopcart.sprice }}
+                    </td>
+                    <td class="cart_quantity">
+                        {{ shopcart.quantity }}
+                    </td>
+                    <td class="cart_quantity">
+                        {{ shopcart.quantity * shopcart.sprice  }}
+                    </td>
+
+                    <td> <a href="{{ path('shopcart_del',{'id':shopcart.id}) }}"  onclick="return confirm('Bu ürünü  sepetten çıkartmak istediğinize emin misiniz?');" class="btn btn-info">Sil</a></td>
+                </tr>
+
+                    {% set total=total+(shopcart.quantity * shopcart.sprice) %}
+                {% else %}
+                <tr>
+                    <td colspan="5">Kayıt Bulunamadı</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tr>
+                    <td colspan="5"><b>Toplam Tutar: {{ total }} ₺</b> <br> </td>
+                </tr>
+            </table>
+            <button  type="button" class="btn btn-success"><a href="{{ path('orders_new') }}" class="btn-block btn-success btn-large ">Satın Al</a></button>
+        </div>
+    </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

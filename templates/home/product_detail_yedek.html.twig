@@ -1,0 +1,204 @@
+{% extends 'home/frontbase.html.twig' %}
+
+{% block title %}  Ürün Detay{% endblock %}
+{% block keywords %}  {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+
+{% block body %}
+    <style>
+        ul#menu-v, #menu-v ul {
+            width: 270px; /* Main Menu width */
+            border: 1px solid rgba(190, 190, 190, 0.3);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            z-index: 9;
+        }
+
+        #menu-v li {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-color: #DDDDDD; /*fallback color*/
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background 0.5s;
+        }
+
+        #menu-v li:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #menu-v a {
+            font: normal 12px Arial;
+            border-top: 1px solid rgba(190, 190, 190, 0.3);
+            display: block;
+            color: #EEEEEE;
+            text-decoration: none;
+            line-height: 30px;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        #menu-v li:first-child a {
+            border-top: 0;
+        }
+
+        #menu-v a.arrow::after {
+            content: '';
+            position: absolute;
+            display: inline;
+            top: 50%;
+            margin-top: -4px;
+            right: 8px;
+            border-width: 4px;
+            border-style: solid;
+            border-color: transparent transparent transparent white;
+            transition: border-color 0.5s;
+        }
+
+        #menu-v li a.arrow:hover::after {
+            border-color: transparent transparent transparent #CCCCCC;
+        }
+
+        /*Sub level menu items
+        ---------------------------------------*/
+        #menu-v li ul {
+            min-width: 180px; /* Sub level menu min width */
+            position: absolute;
+            display: none;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #menu-v li:hover > ul {
+            display: block;
+        }
+    </style>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Category</h2>
+                        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+
+
+                    {% for cat in cats %}
+                        {{ cat|raw }}
+
+                    {% endfor %}
+
+
+                        </div><!--/category-productsr-->
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+                <div class="product-details"><!--product-details-->
+                    <div class="col-sm-5">
+                        <div class="view-product"  style=" height: 400px;">
+                            <img src="{{ asset('uploads') }}/images/{{ data[0].image }}">
+
+                        </div>
+                        <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                {% for rs in images %}
+                                <div class="item active">
+                                    <a href="#"> <img src="{{ asset('uploads') }}/images/{{ rs.image }}"
+                                                      style="width:45px; height:60px;"></a>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left item-control" href="#similar-product" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right item-control" href="#similar-product" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="product-information"><!--/product-information-->
+                            <img src="images/product-details/new.jpg" class="newarrival" alt="" width="100px"
+                                 height="200px">
+                            <h2>{{ data[0].title }}</h2>
+                            <p>Ürün ID: {{ data[0].id }}</p>
+                            <img src="images/product-details/rating.png" alt="" width="100px"
+                                 height="400px">
+                            <span>
+
+                                    <h4>
+                                        {{ data[0].pprice }} ₺
+                                   </h4>
+									<label>Adet:</label>
+									<input type="text" value="1">
+                                <form name="shopcart" class="form-horizontal qtyFrm" action="{{ path('shopcart_new') }}"
+                                    method="post">
+                                           <div class="control-group">
+                                             <div class="custom">
+
+                                  <input type="text" name="shopcart[quantity]" class="input-text qty" value="1"
+                                       placeholder="Adet" max="{{ data[0].amount }}">
+
+                                  <input type="hidden" name="shopcart[productid]" value="{{ data[0].id }}">
+                                  <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                           class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                     </div>
+                                      </div>
+
+                                     <input type="hidden" name="token" value="{{ csrf_token('add-item') }}">
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                  <button type="submit" class="add_cart_btn "><span class="glyphicon-shopping-cart"></span> Sepete
+                                        Ekle
+                                     </button>
+                                    {% endif %}
+                                </form>
+
+								</span>
+                            <p><b>Stok:</b> {{ data[0].amount }}</p>
+
+                            <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""></a>
+                        </div><!--/product-information-->
+                    </div>
+                </div><!--/product-details-->
+
+                <div class="category-tab shop-details-tab"><!--category-tab-->
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+
+                            <li class="active"><a href="#reviews" data-toggle="tab">üRÜN DETAYI</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade active in" id="reviews">
+                        <div class="col-sm-12">
+
+                            <p>{{ data[0].detail | raw }}</p>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                    </div>
+                </div><!--/category-tab-->
+
+
+            </div>
+        </div>
+    </div>
+    </section>
+{% endblock %}

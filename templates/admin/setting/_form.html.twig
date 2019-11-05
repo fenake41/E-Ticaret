@@ -1,0 +1,184 @@
+{{ include('admin/messages.html.twig') }}
+<form  method="post">
+    <div class="col-md-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                EDIT SETTINGS
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-tabs">
+                    <li class=""><a href="#home" data-toggle="tab">Genel Bilgiler</a>
+                    </li>
+                    <li class="active"><a href="#profile" data-toggle="tab">Email Server</a>
+                    </li>
+                    <li class=""><a href="#messages" data-toggle="tab">Hakkımızda</a>
+                    </li>
+                    <li class=""><a href="#settings" data-toggle="tab">İletişim</a>
+                    </li>
+                    <li class=""><a href="#referance" data-toggle="tab">Referanslar</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="home">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Title</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[title]" value="{{  setting.title  }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>keywords</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[keywords]" value="{{  setting.keywords  }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>description</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="setting[description]" value="{{  setting.description  }}" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Company Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="setting[company]" value="{{  setting.company  }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Adress</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[address]" value="{{  setting.address  }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Fax</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[fax]" value="{{  setting.fax  }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label> Status</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="setting[status]" class="form-control">
+                                    <option>{{ setting.status }}</option>
+                                    <option>True</option>
+                                    <option>False</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active in" id="profile">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Email Server</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[smtpserver]" value="{{  setting.smtpserver  }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[smtpemail]" value="{{  setting.smtpemail  }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Password</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[smtppassword]" value="{{  setting.smtppassword  }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>SMTP Port</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="setting[smtpport]" value="{{  setting.smtpport  }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="messages">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <textarea id="aboutus22" name="setting[aboutus]" rows="10" cols="85">{{  setting.aboutus  }}</textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="settings">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <textarea id="contact22" name="setting[contact]" rows="10" cols="85">{{  setting.contact  }}</textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="referance">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <textarea id="referance22" name="setting[referances]" rows="10" cols="100">{{  setting.referances  }}</textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <a href="{{ path('admin_setting_index') }}" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-arrow-left"> </span> Listeye Geri Dön</a>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-check"></span> Kaydet </button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#aboutus22' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#referance22' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#contact22' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

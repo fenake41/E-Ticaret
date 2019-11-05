@@ -1,0 +1,44 @@
+{% extends 'home/frontbase.html.twig' %}
+
+
+{% block body %}
+    <div class="section" style="margin-left: 1%;">
+        <!-- container -->
+        <div class="container" style=" height: 600px;  width:40%" >
+            <!-- row -->
+            <div class="row" >
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Toplam Miktar</th>
+                        <th>Şehir</th>
+                        <th>Telefon</th>
+                        <th>Ek Bilgi</th>
+                        <th>Not</th>
+                        <th>İşlemler</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.amount }}</td>
+                            <td>{{ order.city }}</td>
+                            <td>{{ order.phone }}</td>
+                            <td>{{ order.shipinfo }}</td>
+                            <td>{{ order.note }}</td>
+                            <td>
+                                <a href="{{ path('orders_show', {'id': order.id}) }}">show</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="13">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div></div></div>
+{% endblock %}

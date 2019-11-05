@@ -1,0 +1,90 @@
+{% extends 'admin/adminbase.html.twig' %}
+
+{% block title %}Ürün Listesi {% endblock %}
+
+{% block body %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-head-line">ÜRÜN LİSTESİ</h1>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ürün Adı</th>
+                <th>Miktar</th>
+                <th>Alış Fiyatı</th>
+                <th>Satış Fiyatı</th>
+
+
+                <th>Resim</th>
+                <th>Galeri</th>
+                <th>Kategorisi</th>
+
+                <th>Durum</th>
+                <th>Göster</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.Amount }}</td>
+                <td>{{ product.pprice }}</td>
+                <td>{{ product.sprice }}</td>
+
+                <td>
+
+                <a href="javascript:openWin('{{ path('admin_product_iedit', {'id': product.id}) }}','','toolbar-no,location=no,directories=0,status=no,top=100,left=200,manuBar=no,scrollBars=no,resizable=no,width=600,height=500');">
+
+                {% if product.image==null %}
+                    <img src="{{ url('admin') }}/img/image.png" height="30">
+                    {% else %}
+                        <img src="{{ asset('uploads') }}/images/{{ product.image }}" height="40">
+
+                        {% endif %}
+                </a>
+                </td>
+
+                <td>
+                    <a href="javascript:openWin('{{ path('admin_image_new', {'pid': product.id}) }}','','toolbar-no,location=no,directories=0,status=no,top=100,left=200,manuBar=no,scrollBars=no,resizable=no,width=1000,height=800');">
+                    <img src="{{ url('admin') }}/img/gallery.png" height="30">
+                    </a>
+                </td>
+
+                <td>   {% for cat in catlist %}
+                    {% if cat.id==product.categoryid %}
+                {{ cat.title }}
+                    {% endif %}
+                {% endfor %}</td>
+
+                <td>{{ product.status }}</td>
+                <td>
+                    <a href="{{ path('admin_product_show', {'id': product.id}) }}" class="btn btn-info">Göster</a>
+
+                </td>
+                <td> <a href="{{ path('admin_product_edit', {'id': product.id}) }}" class="btn btn-primary">Düzenle</a></td>
+                <td> <a href="{{ path('admin_product_delete', {'id': product.id}) }}" class="btn btn-danger">Sil</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">Kayıt </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_product_new') }}" class="btn btn-primary">Yeni Ürün Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

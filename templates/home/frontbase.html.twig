@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/prettyPhoto.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/price-range.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/animate.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/main.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="{{ asset('assets') }}/js/html5shiv.js"></script>
+    <script src="{{ asset('assets') }}/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{ asset('assets') }}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="{{ asset('assets') }}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="{{ asset('assets') }}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="{{ asset('assets') }}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"
+          href="{{ asset('assets') }}/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body>
+<header id="header"><!--header-->
+    <div class="header_top"><!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +90 546 445 25 28</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> bilgi@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header_top-->
+
+    <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="{{ path('home') }}"><img src="{{ asset('assets') }}/images/home/logo2.png" width="100px" height="100px" alt=""/></a>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                        <ul class="nav navbar-nav">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li>Hoşgeldin , {{ app.user.name }}</li>
+                                <li><a href="{{ path('userpanel') }}"><i class="fa fa-user"></i> Hesabım</a></li>
+                                <li><a href="{{ path('shopcart_index') }}"><i class="fa fa-shopping-cart"></i> Sepetim</a></li>
+                                <li><a href="{{ path('app_logout') }}"><i class="fa fa-power-off"></i> Çıkış</a></li>
+                            {% else %}
+                                <li><a href="{{ path('new_user') }}"><i class="fa fa-lock"></i> Kayıt Ol</a></li>
+                                <li><a href="{{ path('user_app_login') }}"><i class="fa fa-star"></i> Giriş Yap</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
+    <div class="header-bottom"><!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="{{ path('home') }}">Anasayfa</a></li>
+                            <li><a href="{{ path('home') }}">Ürünler</a></li>
+                            {#<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>#}
+                            {#<ul role="menu" class="sub-menu">#}
+                            {#<li><a href="shop.html">Products</a></li>#}
+                            {#<li><a href="product-details.html">Product Details</a></li>#}
+                            {#<li><a href="checkout.html">Checkout</a></li>#}
+                            {#<li><a href="cart.html">Cart</a></li>#}
+                            {#<li><a href="login.html">Login</a></li>#}
+                            {#</ul>#}
+                            {#</li>#}
+                            <li><a href="{{ path ('hakkimizda') }}">Hakkımızda</a></li>
+                            <li><a href="{{ path ('referanslar') }}">Referanslar</a></li>
+                            <li><a href="{{ path ('iletisim') }}">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-bottom-->
+</header><!--/header-->
+<section>
+{% block sidebar %} {% endblock %}
+
+{% block body %} {% endblock %}
+</section>
+
+<footer id="footer"><!--Footer-->
+
+
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-2">
+
+                    <div class="single-widget">
+
+                        <h2><a href="{{ path('home') }}"><i class="fa fa-home"></i> Anasayfa</a></h2>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2><a href="{{ path ('referanslar') }}">Referanslar</a></h2>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2><a href="{{ path ('iletisim') }}">İletişim</a></h2>
+
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="single-widget">
+                        <h2><a href="{{ path ('hakkimizda') }}">Hakkımızda</a></h2>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-3 col-sm-offset-1">
+                    <div class="single-widget">
+                        <h2>SİTEDE ARA</h2>
+                        <form action="#" class="searchform">
+                            <input type="text" placeholder="Email Adresiniz"/>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">Copyright © 2019 E-TİCARET  Bütün Hakları Saklıdır.</p>
+                <p class="pull-right">Tasarım <span><a target="_blank"
+                                                           href="{{ path('home') }}">ÖZGÜN AY</a></span></p>
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->
+
+
+<script src="{{ asset('assets') }}/js/jquery.js"></script>
+<script src="{{ asset('assets') }}/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets') }}/js/jquery.scrollUp.min.js"></script>
+<script src="{{ asset('assets') }}/js/price-range.js"></script>
+<script src="{{ asset('assets') }}/js/jquery.prettyPhoto.js"></script>
+<script src="{{ asset('assets') }}/js/main.js"></script>
+</body>
+</html>
+
+
+
+
